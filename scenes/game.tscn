@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://dv1uuf8ekm2l5"]
+
+[ext_resource type="PackedScene" uid="uid://dsq7ko07to38i" path="res://scenes/player.tscn" id="1_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://dhabs3fxf4gxp" path="res://scenes/ball.tscn" id="2_lnu2h"]
+[ext_resource type="Script" uid="uid://d0nhgihcgjsht" path="res://scripts/point_area_1.gd" id="3_lbhrr"]
+[ext_resource type="Script" uid="uid://bnpmmh85h0i2b" path="res://scripts/point_area_2.gd" id="4_iywne"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gft63"]
+distance = -1.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_o40nt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gft63"]
+size = Vector2(52, 701)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o40nt"]
+size = Vector2(58, 700)
+
+[node name="game" type="Node2D" unique_id=1944371215]
+
+[node name="player" parent="." unique_id=1887419433 instance=ExtResource("1_yqjtg")]
+unique_name_in_owner = true
+position = Vector2(-681, 1)
+motion_mode = 1
+
+[node name="player2" parent="." unique_id=168435820 instance=ExtResource("1_yqjtg")]
+unique_name_in_owner = true
+position = Vector2(679, 1)
+motion_mode = 1
+UP = "up_2"
+DOWN = "down_2"
+player_num = 1
+
+[node name="Boundary" type="StaticBody2D" parent="." unique_id=923699572]
+
+[node name="Top" type="CollisionShape2D" parent="Boundary" unique_id=1053180597]
+unique_name_in_owner = true
+position = Vector2(0, 349)
+shape = SubResource("WorldBoundaryShape2D_gft63")
+
+[node name="Bottom" type="CollisionShape2D" parent="Boundary" unique_id=867468167]
+unique_name_in_owner = true
+position = Vector2(0, -350)
+rotation = 3.1415927
+shape = SubResource("WorldBoundaryShape2D_o40nt")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=869953251]
+
+[node name="Ball" parent="." unique_id=1198439122 instance=ExtResource("2_lnu2h")]
+
+[node name="Point_area_1" type="Area2D" parent="." unique_id=588495398]
+script = ExtResource("3_lbhrr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Point_area_1" unique_id=780999227]
+position = Vector2(-776, 0)
+shape = SubResource("RectangleShape2D_gft63")
+
+[node name="Point_area_2" type="Area2D" parent="." unique_id=1166135588]
+script = ExtResource("4_iywne")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Point_area_2" unique_id=1806621113]
+position = Vector2(779, 0)
+shape = SubResource("RectangleShape2D_o40nt")
+
+[connection signal="body_entered" from="Point_area_1" to="Point_area_1" method="_on_body_entered"]
+[connection signal="body_entered" from="Point_area_2" to="Point_area_2" method="_on_body_entered"]

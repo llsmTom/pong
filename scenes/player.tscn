@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://dsq7ko07to38i"]
+
+[ext_resource type="Script" uid="uid://dgi5h30fpsnb8" path="res://scripts/hráč.gd" id="1_qtdak"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8wc10"]
+size = Vector2(30, 150)
+
+[node name="player" type="CharacterBody2D" unique_id=749984637]
+script = ExtResource("1_qtdak")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1817906673]
+shape = SubResource("RectangleShape2D_8wc10")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=6437538]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = -75.0
+offset_right = 15.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_position = Vector2(-15, -75)
+metadata/_edit_use_anchors_ = true
